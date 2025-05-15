@@ -1,9 +1,8 @@
 pipeline {
     agent {
         docker {
-            image 'maven:3.9.9-eclipse-temurin'
-            label 'docker'
-            args '-v /tmp/maven:/var/maven/.m2 -e MAVEN_CONFIG=/var/maven/.m2'
+            image 'maven:3.9.9-amazoncorretto-21'
+            args '-u root -v /c/ProgramData/Jenkins/.jenkins/workspace/docker_prac:/workspace -w /workspace'
         }
     }
 
