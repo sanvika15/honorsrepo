@@ -2,7 +2,8 @@ pipeline {
     agent {
         docker {
             image 'maven:3.9.9-amazoncorretto-21'
-            args '-u root -w /workspace'
+            // Don't override working dir; use default (mounted workspace)
+            // args '-w /workspace'  // remove this or fix mapping below
         }
     }
 
@@ -27,7 +28,12 @@ pipeline {
 
     post {
         always {
-            cleanWs()
+            // Wrap cleanWs inside node block to provide required context
+            script {
+                node {
+                    cleanWs()
+                }
+            }
         }
     }
 }
