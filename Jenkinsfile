@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'maven:3.9.9-amazoncorretto-21'
-            args '-u root -v /c/ProgramData/Jenkins/.jenkins/workspace/docker_prac:/workspace -w /workspace'
+            args '-u root -w /workspace'
         }
     }
 
